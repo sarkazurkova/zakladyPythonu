@@ -158,3 +158,12 @@ funkční kód, tím lepší).
 3. Vytvořte funkci, která vygeneruje náhodná hesla pro počet osob zadaný v parametru tak, aby heslo začínalo
    3 velkými písmeny, pokračovalo 3 malými písmeny, jedním speciálním znakem (-/+*) a končilo 3 náhodnými číslicemi.
 '''
+
+def prevod_data(date_str):
+    day, month, year = date_str.split('. ')
+    end_date = year + "-" + month + "-" + day
+    return end_date
+
+date_input = "12. 10. 2020"
+print("Prevod data: ")
+print(prevod_data(date_input))
