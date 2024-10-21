@@ -159,11 +159,53 @@ funkční kód, tím lepší).
    3 velkými písmeny, pokračovalo 3 malými písmeny, jedním speciálním znakem (-/+*) a končilo 3 náhodnými číslicemi.
 '''
 
+import string
+import random
+
+
+#funkce pro prevod data na systemove datum
 def prevod_data(date_str):
     day, month, year = date_str.split('. ')
     end_date = year + "-" + month + "-" + day
     return end_date
 
+
+
+#funkce pro prevadeni textu na format promennych
+
+def prevod_promene (variable, styl):
+   if(styl.lower() == 'python'):
+      prevod = variable.lower().replace(' ', '_')
+      return prevod
+   elif(styl.lower() == 'camelcase'):
+      prevod = ''.join(x for x in variable.title() if not x.isspace()) 
+      return prevod[0].lower() + prevod[1:]
+   
+
+
+#funkce pro generovani nahodnych hesel
+def generuj_hesla(pocet_osob):
+    hesla = []
+    for _ in range(pocet_osob):
+        velka_pismena = ''.join(random.choices(string.ascii_uppercase, k=3))
+        mala_pismena = ''.join(random.choices(string.ascii_lowercase, k=3))
+        specialni_znak = random.choice('-+*')
+        cislice = ''.join(random.choices(string.digits, k=3))
+        heslo = velka_pismena + mala_pismena + specialni_znak + cislice
+        hesla.append(heslo)
+    return hesla
+
+
+
 date_input = "12. 10. 2020"
 print("Prevod data: ")
 print(prevod_data(date_input))
+
+variable = input("Zadej souslovi pro prevod do promenne:")
+styl = input("Vyber si mezi 'python' a 'camelCase' syntaxi:")
+print(prevod_promene(variable, styl))
+
+pocet_osob = input("Zadej pocet osob, pro ktere chces hesla vytvorit:")
+hesla = generuj_hesla(pocet_osob)
+for heslo in hesla:
+    print(heslo)
