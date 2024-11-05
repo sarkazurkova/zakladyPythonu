@@ -314,3 +314,19 @@ print(hund_ascii)
 # Záznamy budou seřazeny podle věku (sestupně).
 
 print(f'\n*************************************\nCvičení 3\n*************************************')
+persons += ('Anna', 44, 'žena'), ('Milada', 27, 'žena')
+persons.extend([('Milan', 33, 'muž'), ('Petr', 55, 'muž')])
+print(persons)
+
+women = list(filter(lambda item: item[2] == 'žena', persons))
+print("Pouze zeny:")
+print(women)
+for woman in women:
+    print(f"{woman}\n{'-'*len(woman)}")
+
+ipeople = list(filter(lambda person: "i" in person[0].lower(), persons))
+ipeople2 = [person for person in persons if "i" in person[0].lower()]
+csv = "".join([f"{i};{p[0]};{p[1]};{p[2]}\n" for i, p in enumerate(ipeople)])
+print(ipeople)
+print(ipeople2)
+print(csv)
